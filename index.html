@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#183f39">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="萌宠光谱队：从同色亮格起点开始，沿动物面前的相邻格逐圈创造完整图像的原创游戏。">
+<title>萌宠光谱队 · 四色森林 | Paw Prism 3.2.0</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=0.8.0">
+<link rel="stylesheet" href="style.css?v=0.8.0">
+<link rel="stylesheet" href="theme-v08.css?v=0.8.0-final">
+<link rel="stylesheet" href="mobile-native.css?v=1.0.0">
+<link rel="stylesheet" href="animals-v11.css?v=1.1.0">
+<link rel="stylesheet" href="ui-v12.css?v=1.2.0">
+<link rel="stylesheet" href="ui-v13-forest.css?v=1.3.0">
+<link rel="stylesheet" href="ui-v15-paddock.css?v=1.5.0">
+<link rel="stylesheet" href="ui-v16-reference.css?v=1.6.0">
+<link rel="stylesheet" href="ui-v17-collectibles.css?v=1.7.0">
+<link rel="stylesheet" href="ui-v18-music-queues.css?v=1.8.0">
+<link rel="stylesheet" href="ui-v20-win-lose.css?v=2.0.0">
+<link rel="stylesheet" href="ui-v21-individual-numbers.css?v=2.1.0">
+<link rel="stylesheet" href="ui-v22-clear-play.css?v=2.2.0">
+<link rel="stylesheet" href="ui-v23-links-and-binary.css?v=2.3.0">
+<link rel="stylesheet" href="ui-v232-visible-hands.css?v=2.4.0">
+<link rel="stylesheet" href="ui-v280-3d-buddy.css?v=2.8.0">
+<link rel="stylesheet" href="ui-v305-head-numbers.css?v=3.0.5">
+<link rel="stylesheet" href="ui-v306-guide-and-tactics.css?v=3.0.6">
+<link rel="stylesheet" href="ui-v309-solid-wall.css?v=3.0.9">
+<script src="art-v320-portraits.js?v=3.2.0"></script>
+<link rel="stylesheet" href="ui-v320-portraits.css?v=3.2.0">
+</head>
+<body>
+<div class="ambient-puff puff-left"></div><div class="ambient-puff puff-right"></div>
+<div class="shell">
+  <header class="game-hud">
+    <button type="button" id="helpOpen" class="hud-circle help-circle" aria-label="玩法说明" title="玩法说明"><span>?</span></button>
+    <div class="hud-center">
+      <span class="hud-tag">PAW PRISM <i>✦</i> COLOR ATELIER</span>
+      <button type="button" class="level-tab" id="mapOpen" aria-label="选择关卡"><span>LEVEL</span><strong id="levelNumber">01</strong><span class="level-more">▾</span></button>
+    </div>
+    <div class="wallet" aria-label="累计星星"><span class="wallet-star">✦</span><strong id="totalStars">0</strong></div>
+  </header>
+
+  <main class="play-flow">
+    <div class="stage-heading">
+      <img id="missionPortrait" class="mission-portrait" alt="本关完整图案" width="54" height="54"><div class="chapter-copy">
+        <span class="chapter-kicker"><span id="chapterLabel">CHAPTER 01</span> <i>•</i> <span id="levelTag">星光启程</span></span>
+        <h1 id="levelName">第一封星星信</h1>
+        <span id="levelHint" class="stage-hint">一颗星星想要回到天空。</span>
+      </div>
+      <div class="stage-side"><button type="button" id="audioToggle" class="stage-tool" aria-label="背景音乐开关" title="原创音乐《树叶间的晨光》· 点击开关">♫</button><button type="button" id="settingsToggle" class="stage-tool" aria-label="打开道具与休息区" title="查看声音和视觉选项">⚙</button></div>
+    </div>
+
+    <section class="board-frame" aria-label="从同色亮格起点逐圈生长的像素棋盘">
+      <div class="canvas-shell">
+        <canvas id="world" width="640" height="640" aria-label="正方形轨道和像素画棋盘" role="img"></canvas>
+        
+        <div id="canvasStatus" class="board-scene-tag" aria-live="off">同色相邻生长 · 每次经过一格</div>
+        <div class="board-brand">✦ PAW PRISM</div>
+        <div class="board-charm" aria-hidden="true">✧</div>
+      </div>
+      <div class="board-footer">
+        <div class="board-stats">
+          <span class="board-left"><span class="mini-paw">✦</span><span id="progressCaption">建造进度</span> <span id="repaired">0</span>/<span id="pixelTotal">0</span><span id="repairedCaption" class="visually-hidden">已建造</span></span>
+          <strong id="pct">0%</strong>
+        </div>
+        <div class="meter"><div id="paintFill" class="meter-fill"></div></div>
+      </div>
+        <div id="challengeStrip" class="challenge-strip" aria-label="本关派遣预算和空跑次数">
+          <strong id="difficultyMark" class="difficulty-chip">轻松</strong>
+          <span>派遣 <b id="actions">0</b>/<b id="moveLimit">0</b></span>
+          <span>空跑 <b id="missCount">0</b></span>
+          <span class="visually-hidden"><i id="progressEnglish">BUILT PIXELS</i><b id="runScore">0</b></span>
+        </div>
+
+    </section>
+
+    <div class="dispatch-instruction"><span id="dispatchRule">点击一次，只跑一圈</span><small id="efficiencyGoal"></small></div>
+    <section class="queue-section" aria-label="前两排可选、其余锁定的五列单只动物队伍">
+      <div class="game-row-heading">
+        <span><span class="section-glyph heart-glyph">❀</span> 萌宠围栏 <small>前两排可选 · 全部明牌</small></span>
+        <strong id="queueCount" class="count-pill">0 只待命</strong>
+      </div>
+      <div class="paddock-stage" aria-label="五条纵向动物队伍，各有正对方形跑道的出发门">
+        <div class="paddock-forest-art" aria-hidden="true"></div>
+        <div id="gateStrip" class="gate-strip" aria-label="五个正对跑道的独立木门"></div>
+        <div id="homeGrid" class="home-grid"></div>
+        <div id="nextGrid" class="upcoming-grid" aria-label="后续等待出场的动物预览"></div>
+      </div>
+    </section>
+
+    <aside id="managementDrawer" class="management-drawer" aria-label="森林道具和回收营地" aria-hidden="true">
+      <div class="drawer-head"><strong>像素墙 · 声音与视觉</strong><button id="drawerClose" type="button" aria-label="关闭道具和回收">×</button></div>
+      <button type="button" id="sfxToggle" class="drawer-switch" aria-label="切换动作及落位音效" title="独立控制动物与像素音效">✦ 音效开启</button>
+      <button type="button" id="modeToggle" class="drawer-switch" aria-label="固定双态棋盘，不提供半亮颜色">◌ 蓝图明暗</button>
+    <button type="button" id="masterChallenge" class="drawer-switch">重开精简挑战</button>
+<button type="button" id="storyChallenge" class="drawer-switch">重开普通闯关</button>
+<div class="status-strip">
+      <span class="status-light"></span><span id="forecastText">选择动物，从面向它的同色起点向外生长</span>
+    </div>
+
+    <section class="powerbar" aria-label="本关操作">
+      <button type="button" id="restart" class="power-button restart-power" title="重新开始本关">
+       <span class="power-icon">↺</span><span class="power-name">重新挑战</span>
+      </button>
+    </section>
+    </aside>
+    <div class="hidden-state" aria-hidden="true">
+      <span id="restHint"></span><span id="orbitCount"></span>
+      <div id="orbitGrid"></div><span id="harmonyTip"></span>
+      
+    </div>
+    <div class="spectrum-footer" aria-label="四种清晰像素颜色">
+      <span title="红色·狐狸" style="background:#E83B54;color:#E83B54"></span>
+      <span title="黄色·小黄鸭" style="background:#F9CF39;color:#F9CF39"></span>
+      <span title="蓝色·大象" style="background:#348CF3;color:#348CF3"></span>
+      <span title="绿色·青蛙" style="background:#32BD6B;color:#32BD6B"></span>
+    </div>
+    <div class="screen-footer"><span class="footer-mark">✧ PAW PRISM · MAGIC IN EVERY PIXEL</span> <span>CD STUDIO · 独立原创</span></div>
+  </main>
+</div>
+
+<audio id="forestBgm" preload="auto" loop playsinline src="audio/morning-through-leaves-v19.wav"></audio>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="overlay" class="overlay is-hidden" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <button id="modalClose" type="button" class="modal-close" aria-label="关闭">×</button><div id="modalContent"></div>
+</div></div>
+<script src="game.js?v=3.2.0-one-lap-portraits"></script>
+</body></html>

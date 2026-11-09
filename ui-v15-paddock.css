@@ -1,0 +1,302 @@
+/* Paw Prism v1.5.0 — continuous wooden paddocks, not five separate cards.
+   Animal selection & rest are still real buttons with unchanged data-house /
+   data-rest controls. Front-facing fences are purely decorative and cannot
+   intercept pointer/touch events. */
+.queue-section,.waiting-section{
+ background-position:center;
+ background-repeat:no-repeat;
+ background-size:cover;
+}
+.queue-section .game-row-heading,.waiting-section .game-row-heading{
+ position:relative;z-index:9;
+ text-shadow:0 2px 3px #082d24;
+}
+.paddock-stage,.rest-paddock{
+ position:relative;isolation:isolate;
+ min-width:0;width:100%;overflow:hidden;
+ border-radius:10px;
+ background:
+  radial-gradient(ellipse at 53% 80%,#a8ca756b,transparent 66%),
+  linear-gradient(180deg,#264f41aa,#477d5299 68%,#29543ed9 100%);
+}
+.paddock-stage{
+ height:114px;
+ box-shadow:inset 0 1px 0 #e2f7c63b,0 -1px 0 #a7bf7633;
+}
+.paddock-stage::before,.rest-paddock::before{
+ content:"";position:absolute;inset:0;
+ background:
+  repeating-linear-gradient(112deg,transparent 0 18px,#e7e6a012 18px 20px,transparent 20px 38px);
+ opacity:.5;z-index:0;pointer-events:none;
+}
+.paddock-back{
+ position:absolute;inset:0;
+ background:url("art/paddock-fence-back.svg") center center/100% 100% no-repeat;
+ opacity:.72;z-index:0;pointer-events:none;
+}
+.paddock-fence-front,.paddock-rest-front{
+ position:absolute;inset:0;z-index:5;
+ pointer-events:none!important;
+ background-position:center bottom;
+ background-repeat:no-repeat;
+ background-size:100% 100%;
+ filter:drop-shadow(0 2px 2px #103a2b7c);
+}
+.paddock-fence-front{background-image:url("art/paddock-fence-front.svg")}
+.paddock-rest-front{background-image:url("art/paddock-fence-rest.svg")}
+/* Five touch zones without visible cards, individual outlines or panel shadows. */
+.paddock-stage .home-grid{
+ position:relative!important;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+ margin:0;padding:0!important;gap:0!important;
+ height:100%;min-height:0;z-index:auto!important;
+ background:none!important;
+}
+.paddock-stage .home,.paddock-stage .home-empty{
+ box-sizing:border-box;
+ position:relative;
+ isolation:auto;
+ height:100%!important;min-height:0!important;
+ padding:0!important;margin:0!important;
+ border:0!important;border-radius:0!important;
+ background:transparent!important;box-shadow:none!important;
+ filter:none!important;opacity:1!important;
+ overflow:visible!important;
+ color:#fff7da;outline-offset:-4px;
+ -webkit-tap-highlight-color:transparent;
+}
+.paddock-stage .home{cursor:pointer;z-index:auto;}
+.paddock-stage .home.helpful,
+.paddock-stage .home.wildcard,
+.paddock-stage .home:not(.helpful){
+ background:transparent!important;
+ border:0!important;box-shadow:none!important;
+ filter:none!important;
+}
+.paddock-stage .home::before{
+ content:"";position:absolute;left:15%;top:34px;bottom:auto;
+ width:70%;height:45px;
+ background:radial-gradient(ellipse at center,#a4ef8d7e,transparent 72%);
+ opacity:0;filter:blur(3px);transform:none;
+ border:none;box-shadow:none;border-radius:50%;
+ z-index:1;pointer-events:none;
+}
+.paddock-stage .home.helpful::before{opacity:.84}
+.paddock-stage .home.wildcard::before{
+ opacity:.7;background:radial-gradient(ellipse,#e5b8eaae,#9deacc43,transparent 75%)
+}
+.paddock-stage .home::after,.paddock-stage .home-empty::before,.paddock-stage .home-empty::after{
+ content:none!important;display:none!important;
+}
+.paddock-stage .home-portrait{
+ position:absolute!important;
+ top:13px;left:50%;
+ width:min(65px,96%);height:71px;min-height:0;
+ transform:translateX(-50%);
+ z-index:3!important;
+ filter:drop-shadow(0 4px 3px #173a28b8);
+ transition:top .15s,filter .15s,transform .15s;
+ pointer-events:none;
+}
+.paddock-stage .home:not(.helpful) .home-portrait{filter:saturate(.8) brightness(.92) drop-shadow(0 4px 3px #122d29b7)}
+.paddock-stage .home.helpful .home-portrait{filter:drop-shadow(0 4px 3px #132f24a8) drop-shadow(0 0 5px #d0ef8d7c)}
+.paddock-stage .home:hover .home-portrait{transform:translateX(-50%) translateY(-4px) scale(1.07)}
+.paddock-stage .home:active .home-portrait{transform:translateX(-50%) translateY(-7px) scale(.95)}
+.paddock-stage .home:focus-visible{outline:2px dashed #fce7a4!important;border-radius:11px}
+.paddock-stage .home-id{
+ position:absolute;top:10px;left:3px;z-index:7!important;
+ display:grid;place-items:center;
+ min-width:15px;height:17px;padding:0 2px;
+ border:1px solid #f2d89c5c;border-radius:50%;
+ background:#3d724cd6!important;
+ color:#fceec1;font-size:9px;font-weight:900;
+ box-shadow:0 2px 3px #13392278;
+}
+.paddock-stage .home-ammo{
+ position:absolute!important;top:11px!important;right:3px!important;left:auto!important;
+ width:auto;min-width:22px;height:23px;min-height:0;
+ padding:0 4px;display:grid;place-items:center;
+ transform:none!important;z-index:8!important;
+ border:1.5px solid #fff8d9!important;
+ border-radius:10px!important;
+ background:linear-gradient(145deg,#fffbd9,#f7cf8d)!important;
+ color:#46341b!important;text-shadow:none!important;
+ box-shadow:inset 0 1px #fffdf4,0 2px 0 #8b5f2c,0 3px 5px #203c2d9b!important;
+ font-size:12px!important;line-height:21px!important;letter-spacing:0;
+}
+.paddock-stage .home-name{
+ position:absolute!important;
+ top:auto!important;bottom:25px!important;left:0;right:0;
+ z-index:8!important;margin:0;padding:0;
+ color:#fff8dc!important;text-shadow:0 2px 2px #38291f,0 0 5px #332d25;
+ font-size:11px!important;font-weight:950;text-align:center;line-height:15px;
+}
+.paddock-stage .home-hits{
+ position:absolute!important;bottom:5px!important;left:50%!important;
+ transform:translateX(-50%);z-index:8!important;
+ width:max-content;max-width:96%;
+ white-space:nowrap;
+ margin:0!important;padding:1px 4px!important;
+ border:1px solid #e1c28890!important;border-radius:9px!important;
+ background:linear-gradient(165deg,#345f42ed,#28452fd9)!important;
+ color:#fff0c7!important;
+ text-shadow:0 1px 1px #223222;
+ box-shadow:0 1px 2px #1735298c;
+ font-size:8px!important;line-height:12px!important;
+}
+.paddock-stage .home:not(.helpful) .home-hits{color:#d8d2b5!important;opacity:.85}
+.paddock-stage .home.wildcard .home-hits{
+ border:1px solid #fff1bd!important;
+ background:linear-gradient(105deg,#5a6854e0,#66765ee0,#5d667cdd)!important;
+ color:#fffce3!important;font-size:7.8px!important;
+}
+.paddock-stage .home.wildcard .home-portrait{
+ filter:drop-shadow(0 0 4px #ddbcfd9b) drop-shadow(0 3px 2px #15372c)!important;
+}
+.paddock-stage .home-empty{
+ display:flex;justify-content:center;align-items:center;
+ color:#c0db9f;opacity:.85!important;
+}
+.paddock-stage .home-empty small{
+ position:absolute;bottom:26px;font-size:9px;color:#dbeab3;z-index:8;
+ margin:0;text-shadow:0 1px 2px #1a3426;
+}
+.paddock-stage .home-empty .meadow-flower{
+ position:absolute;top:41px;font-size:24px;color:#ecde9d;opacity:.75;
+ text-shadow:0 3px #1c523a;z-index:3;
+}
+.paddock-stage .upcoming-grid{
+ position:absolute!important;left:0;right:0;top:2px;bottom:auto;
+ width:100%;height:29px!important;min-height:0;
+ display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+ gap:0!important;margin:0!important;padding:0!important;
+ border:0!important;background:transparent!important;box-shadow:none!important;
+ border-radius:0;z-index:1!important;pointer-events:none;
+}
+.paddock-stage .upcoming-cell{
+ background:none!important;box-shadow:none!important;border:0!important;
+ position:relative;min-width:0;
+ display:flex;align-items:flex-start;justify-content:flex-end;
+ padding:0 3px!important;height:28px!important;min-height:0!important;
+}
+.paddock-stage .upcoming-cell::before{content:none!important;display:none!important}
+.paddock-stage .peek-face{
+ width:26px!important;height:26px!important;
+ position:relative;opacity:.88;
+ transform:translateX(2px) scale(.94);
+ filter:drop-shadow(0 2px 1px #143b2b);
+}
+.paddock-stage .peek-none{visibility:hidden}
+.paddock-stage .mini-status{display:none}
+
+/* Resting fence is a continuous second enclosure, not five wooden cards. */
+.rest-paddock{height:66px;background:
+ radial-gradient(ellipse at 50% 45%,#a6d58d4e,transparent 70%),
+ linear-gradient(180deg,#2b6452bb,#2e6c4ed0);}
+.rest-paddock .rest-grid{
+ display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0!important;
+ padding:0!important;min-height:0!important;height:100%;
+ position:relative!important;z-index:auto!important;
+}
+.rest-paddock .rest-unit,.rest-paddock .rest-empty{
+ height:100%!important;min-height:0!important;
+ min-width:0;position:relative;isolation:auto;
+ margin:0;padding:0!important;overflow:visible!important;
+ border:0!important;border-radius:0!important;background:transparent!important;
+ box-shadow:none!important;filter:none!important;opacity:1!important;
+ cursor:pointer;
+ -webkit-tap-highlight-color:transparent;
+}
+.rest-paddock .rest-empty{cursor:default}
+.rest-paddock .rest-unit:hover{transform:none!important}
+.rest-paddock .rest-unit:active .tiny-face{transform:translateX(-50%) translateY(-4px) scale(.94)}
+.rest-paddock .rest-unit::before{
+ content:"";display:block;position:absolute;top:0;left:10%;right:10%;
+ width:80%;height:48px;bottom:auto;
+ transform:none;box-shadow:none;border:0;border-radius:50%;
+ background:radial-gradient(ellipse,#a2e8a43b,transparent 72%);
+ opacity:0;z-index:1;
+}
+.rest-paddock .rest-unit.rest-ready::before{opacity:1}
+.rest-paddock .rest-unit::after,.rest-paddock .rest-empty::before,.rest-paddock .rest-empty::after{
+ content:none!important;display:none!important;
+}
+.rest-paddock .rest-unit.rest-ready,
+.rest-paddock .rest-unit.wildcard{
+ border:0!important;box-shadow:none!important;background:transparent!important;
+}
+.rest-paddock .tiny-face{
+ position:absolute!important;top:1px!important;left:50%;
+ width:min(48px,96%)!important;height:49px!important;
+ transform:translateX(-50%);
+ filter:drop-shadow(0 3px 2px #143828);
+ z-index:3!important;
+ transition:transform .15s;
+}
+.rest-paddock .rest-unit small{
+ position:absolute!important;bottom:2px!important;left:50%;
+ transform:translateX(-50%)!important;
+ display:block;max-width:98%;
+ margin:0!important;padding:1px 4px!important;
+ border:1px solid #e4c3909c;border-radius:9px;
+ color:#fff5ce!important;text-align:center;white-space:nowrap;
+ background:#345a3de6!important;box-shadow:0 2px 2px #1235229c;
+ font-size:9px;line-height:13px;
+ z-index:8!important;
+}
+.rest-paddock .rest-unit small b{color:#ffe9ae!important}
+.rest-paddock .rest-empty .meadow-flower{
+ position:absolute;left:50%;top:23px;transform:translateX(-50%);
+ color:#e1d597;font-size:19px;opacity:.55;z-index:2;
+}
+/* Accompanying pasture buttons remain the complete hit targets; no
+   overlay or fence SVG receives touches. */
+@media(max-width:760px),(display-mode:standalone){
+ :root{--canvas-side:min(calc(100vw - 28px),calc(100dvh - 494px))}
+ .queue-section{padding:3px 6px 5px!important;gap:1px}
+ .waiting-section{padding:3px 6px 5px!important;gap:1px}
+ .paddock-stage{height:107px!important;min-height:107px}
+ .paddock-stage .home-portrait{top:10px;height:68px;width:min(64px,98%)}
+ .paddock-stage .home-name{bottom:24px!important;font-size:10px!important}
+ .paddock-stage .home-hits{bottom:3px!important;font-size:7.5px!important}
+ .rest-paddock{height:57px!important;min-height:57px}
+ .rest-paddock .tiny-face{height:43px!important;width:min(41px,93%)!important}
+ .rest-paddock .rest-unit small{font-size:8px}
+}
+@media(max-width:760px) and (max-height:790px){
+ :root{--canvas-side:min(calc(100vw - 30px),calc(100dvh - 482px))}
+ .paddock-stage{height:98px!important;min-height:98px}
+ .paddock-stage .home-portrait{top:8px;height:61px}
+ .paddock-stage .home-name{bottom:22px!important;font-size:9.4px!important}
+ .paddock-stage .home-hits{bottom:2px!important;font-size:7px!important}
+ .paddock-stage .home-ammo{top:6px!important;min-width:20px;height:20px;line-height:18px!important;font-size:10px!important}
+ .rest-paddock{height:52px!important;min-height:52px}
+ .rest-paddock .tiny-face{height:38px!important}
+}
+@media(max-width:760px) and (max-height:650px){
+ :root{--canvas-side:min(calc(100vw - 32px),calc(100dvh - 392px))}
+ .paddock-stage{height:77px!important;min-height:77px}
+ .paddock-stage .home-portrait{top:1px;height:46px}
+ .paddock-stage .home-name{bottom:19px!important;font-size:8.7px!important}
+ .paddock-stage .home-hits{bottom:1px!important;font-size:6.3px!important;max-width:100%}
+ .paddock-stage .home-ammo{top:1px!important;right:0!important;height:17px;min-width:18px;font-size:9px!important}
+ .paddock-stage .home-id{top:2px}
+ .paddock-stage .upcoming-grid{display:none}
+ .rest-paddock{height:41px!important;min-height:41px}
+ .rest-paddock .tiny-face{height:29px!important;top:0}
+ .rest-paddock .rest-unit small{font-size:6.7px;padding:0 2px!important;line-height:10px}
+}
+@media(min-width:761px){
+ .paddock-stage{height:153px!important}
+ .paddock-stage .home-portrait{top:22px;height:101px;width:min(116px,96%)}
+ .paddock-stage .home-name{bottom:31px!important;font-size:14px!important}
+ .paddock-stage .home-hits{bottom:7px!important;font-size:11px!important}
+ .paddock-stage .home-ammo{top:17px!important;right:12px!important;font-size:16px!important;height:28px;min-width:28px}
+ .paddock-stage .home-id{top:18px;left:8px;font-size:12px}
+ .paddock-stage .upcoming-grid{top:10px}
+ .rest-paddock{height:92px!important}
+ .rest-paddock .tiny-face{top:5px!important;height:65px!important;width:65px!important}
+ .rest-paddock .rest-unit small{font-size:12px;bottom:8px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .paddock-stage .home-portrait,.rest-paddock .tiny-face{transition:none!important}
+}

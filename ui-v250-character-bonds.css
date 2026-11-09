@@ -1,0 +1,41 @@
+/* Character Creator design pass — species-specific clasping poses.
+   Reuse each original Blender portrait unchanged (fox/chick/elephant/frog).
+   The only overlay is the actual two species' small articulated paws. */
+.paddock-stage .pen-animals .pen-animal .paw-handshake.paw-bond-art {
+ position:absolute!important;
+ display:block!important;
+ width:108%!important;
+ height:92%!important;
+ left:50%!important;
+ top:54%!important;
+ transform:translateX(-50%)!important;
+ z-index:22!important;
+ pointer-events:none!important;
+ opacity:1!important;
+ overflow:visible!important;
+ object-fit:fill!important;
+ filter:drop-shadow(0 1px 1px #143d32a8)!important;
+ user-select:none!important;
+ -webkit-user-drag:none!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond::before{
+ display:none!important;content:none!important;
+ background:none!important;box-shadow:none!important;border:0!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond{
+ isolation:auto!important;
+}
+.paddock-stage .pen-animals .pen-animal.linked-next{
+ z-index:14!important;
+}
+.paddock-stage .pen-animals .pen-animal.bond-continuation.linked-next{
+ z-index:15!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-locked .paw-bond-art{
+ opacity:1!important;filter:none!important;
+}
+@media (max-width:385px) {
+ .paddock-stage .pen-animals .pen-animal .paw-handshake.paw-bond-art{
+   width:111%!important;height:92%!important;top:54%!important;
+ }
+}

@@ -1,0 +1,39 @@
+/* Paw Prism 2.0 - Gameplay stakes in the actual mobile HUD.
+   Keeps the proven five-gate full-width portrait layout untouched. */
+.challenge-strip{
+ position:absolute!important;left:7px;top:7px;z-index:11;
+ display:flex!important;align-items:center;justify-content:space-between;
+ gap:6px;width:auto;max-width:calc(100% - 80px);
+ min-height:25px;padding:3px 7px;margin:0;
+ border:1px solid #f1f6b26e;border-radius:12px;
+ background:#0d604ad9;box-shadow:0 2px 4px #14332644;
+ color:#e9ffe3;font-size:11px;font-weight:800;
+ font-variant-numeric:tabular-nums;letter-spacing:.02em;
+ white-space:nowrap;pointer-events:none;
+}
+.challenge-strip b{color:#fff7c4;font-size:12px;font-weight:950;text-shadow:0 1px 2px #094332}
+.difficulty-chip{
+ flex:none;display:inline-block;border-radius:9px;
+ padding:2px 8px;line-height:1.5;
+ border:1px solid #cdecb9a8;
+ background:linear-gradient(145deg,#168969,#0a5c50);
+ color:#e7ffd2;font-size:10px;text-align:center;
+}
+.difficulty-easy{border-color:#cbef8b;color:#f0ffe0}
+.difficulty-normal{background:linear-gradient(135deg,#169b85,#0a6574)}
+.difficulty-advanced{background:linear-gradient(135deg,#207f9c,#145677)}
+.difficulty-hard{background:linear-gradient(135deg,#7a4f7b,#683b56);border-color:#e9bcca}
+.challenge-strip.near-limit{background:linear-gradient(100deg,#9b662e35,#5a331535);border-radius:7px}
+.challenge-strip.mistake-danger span:last-of-type b{color:#ffd28f;text-shadow:0 0 8px #ff9c718c}
+.home.risky:not(.helpful) .pen-leader{filter:grayscale(.27) brightness(.89)}
+.pen-gate.waiting{filter:saturate(.77)}
+@media(max-width:520px){
+ .challenge-strip{min-height:20px;font-size:9px;padding:3px 2px 1px;gap:3px}
+ .challenge-strip b{font-size:10px}
+ .difficulty-chip{font-size:9px;padding:1px 5px}
+}
+@media(max-width:340px){
+ .challenge-strip{font-size:8px;gap:2px}
+ .challenge-strip b{font-size:9px}
+ .difficulty-chip{font-size:8px}
+}

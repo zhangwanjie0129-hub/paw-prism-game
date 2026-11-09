@@ -1,0 +1,45 @@
+/* Paw Prism 1.1.0: seven recognizable wild-animal portraits and one
+   distinct prismatic chameleon, layered over the established mobile UI. */
+.home.wildcard,.rest-unit.wildcard{
+ border:2px solid transparent!important;
+ background:
+  radial-gradient(ellipse at 52% 33%,#c99cff8f,transparent 73%) padding-box,
+  linear-gradient(145deg,#5d548c,#293460 79%) padding-box,
+  conic-gradient(from 25deg,#fc7296,#ffc071,#ffe895,#64e0aa,#5fc9ff,#ad9df9,#fc7296) border-box!important;
+ box-shadow:inset 0 2px 2px #fff9,0 5px 0 #2f2a63,0 0 19px #bea8ffb0;
+}
+.home.wildcard .home-name{color:#fff9da;text-shadow:0 0 9px #ffc1de88,0 2px 2px #1e1a45}
+.home.wildcard .home-hits{
+ background:linear-gradient(115deg,#7259a8,#466ba9,#3f9a87,#b78469)!important;
+ border:1px solid #fff3d7!important;color:#fffaf0!important;
+ font-weight:950;letter-spacing:0;box-shadow:0 0 9px #b2a5f777;
+}
+.home.wildcard .home-ammo{
+ background:linear-gradient(130deg,#fbeaff,#efacdb,#b5e9ff)!important;
+ color:#383051!important;border-color:#fff5dc!important;
+ box-shadow:0 0 11px #e9bcff,0 2px 0 #39335b;
+}
+.home.wildcard .home-portrait{filter:drop-shadow(0 1px 6px #e1c3ff)}
+.rest-unit.wildcard .pet-color-chip{background:conic-gradient(#f4789e,#ffc76a,#78e89f,#84baf8,#c3a7f9,#f4789e)!important}
+.peek-face.wildcard:before{border:2px solid #ffeab7;box-shadow:0 0 9px #bdb2ff}
+.modal{overflow-y:auto;overscroll-behavior:contain}.animal-guide{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:12px 0 16px}
+.animal-guide-item{
+ display:flex;flex-direction:column;align-items:center;gap:2px;
+ border:1.5px solid var(--tone);border-radius:12px;padding:6px 2px;
+ background:linear-gradient(150deg,#4b4577,#2d315e);
+ box-shadow:inset 0 1px 0 #fff4,0 2px 7px #14183288;
+}
+.animal-guide-item.wildcard{
+ border:2px solid transparent;background:
+ linear-gradient(140deg,#524b78,#2f3159) padding-box,
+ conic-gradient(#ff83a9,#ffd08a,#85e6a1,#8ac7f9,#c3a3f9,#ff83a9) border-box;
+}
+.animal-guide-face{width:49px;height:49px;filter:drop-shadow(0 2px 4px #181634)}
+.animal-guide-item strong{font-size:10px;color:#fffefa}
+.animal-guide-item small{font-size:9px;color:#d5caec;white-space:nowrap}
+@media(max-width:410px){
+ .animal-guide{gap:5px;margin:8px 0 12px}
+ .animal-guide-face{height:42px;width:42px}
+ .home.wildcard .home-hits{font-size:8px}
+}
+@media(max-width:360px){.animal-guide-item{padding:4px 0}}

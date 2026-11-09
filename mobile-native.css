@@ -1,0 +1,184 @@
+/* PAW PRISM - PHONE-FIRST FULLSCREEN GAME, v1.0
+   Offline Android WebView layout; deliberately NOT a desktop web page.
+   Keep the actual square-track geometry/gameplay unchanged. */
+html{overscroll-behavior:none}
+body{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button{touch-action:manipulation;user-select:none;-webkit-user-select:none}
+@media(max-width:760px), (display-mode:standalone){
+ :root{
+  --canvas-side:min(calc(100vw - 30px),calc(100vh - 375px));
+  --canvas-side:min(calc(100vw - 30px),calc(100dvh - 375px));
+ }
+ html,body{width:100%;max-width:100%;height:100%;min-height:100%;margin:0;overflow:hidden}
+ body{
+  position:fixed;inset:0;overscroll-behavior:none;
+  background:linear-gradient(180deg,#201d3b,#322c57 48%,#221f46);
+  -webkit-text-size-adjust:100%;
+ }
+ body:before{inset:0;position:fixed;opacity:.28;background-size:120px 170px,140px 120px}
+ .ambient-puff{display:none}
+ .shell{
+  width:100%;max-width:100%;height:100dvh;min-height:100dvh;
+  margin:0;box-sizing:border-box;
+  display:flex;flex-direction:column;
+  gap:3px;min-width:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;
+  padding:calc(4px + env(safe-area-inset-top,0px)) 7px
+   calc(4px + env(safe-area-inset-bottom,0px)) 7px;
+  border:0;border-radius:0;box-shadow:none;
+  background:radial-gradient(circle at 50% 6%,#65539f77,transparent 40%),
+             linear-gradient(180deg,#30294e,#242a50 68%,#252344);
+ }
+ .shell:before{display:none}
+ .game-hud{
+  flex:0 0 46px;height:46px;min-height:46px;
+  display:grid;grid-template-columns:44px minmax(0,1fr) 64px;
+  gap:4px;align-items:center;padding:0 5px;
+ }
+ .hud-circle{width:40px;height:40px;font-size:23px;border-radius:13px;box-shadow:inset 0 2px 0 #fff9,0 2px 0 #24466f}
+ .hud-center{gap:0}.hud-tag{font-size:7px;line-height:1;letter-spacing:.10em}
+ .hud-tag:before{display:none}.level-tab{min-height:32px;padding:3px 16px;border-radius:12px;box-shadow:0 2px 0 #823d80}
+ .level-tab strong{font-size:19px}
+ .wallet{padding:4px 7px;border-radius:14px;justify-self:end}
+ .wallet strong{font-size:15px}.wallet-star{font-size:20px}
+ .play-flow{
+  flex:1 1 auto;min-height:0;
+  display:flex;flex-direction:column;gap:4px;
+  margin:0;padding:0;
+ }
+ .stage-heading{display:none}
+ .board-frame{
+  order:0;flex:none;
+  width:100%;max-width:100%;min-width:0;
+  border-radius:16px;border-width:1.5px;
+  padding:5px 5px 4px;
+  background:linear-gradient(135deg,#9284b8,#3f3e7b 55%,#726db0);
+  box-shadow:inset 0 1px 1px #fffa,0 2px 6px #090e305b;
+ }
+ .board-frame:before{border-radius:13px}
+ .canvas-shell{
+  width:var(--canvas-side);height:var(--canvas-side);
+  max-width:100%;margin:0 auto;
+  border:2px solid #b7afef;border-radius:13px;
+  background:#161d38;
+ }
+ .canvas-shell canvas{
+  display:block;
+  width:100%;height:100%;
+  max-width:none;max-height:none;
+  aspect-ratio:1;object-fit:fill;
+ }
+ .board-scene-tag{max-width:72%;font-size:8px;padding:5px 8px;left:7px;top:7px}
+ .board-brand{left:9px;bottom:5px;font-size:6px}
+ .board-charm{right:8px;top:5px;font-size:17px}
+ .board-footer{padding:3px 6px 1px;min-height:28px}
+ .board-stats{font-size:10px;font-weight:850}.board-stats strong{font-size:16px}
+ .meter{height:7px;margin-top:3px;border-width:1px}.meter-fill{min-height:5px}
+ .board-bottom{display:none}
+ .game-row-heading{
+  min-height:21px;height:21px;
+  padding:1px 4px 2px;
+  font-size:11px;line-height:18px;
+ }
+ .game-row-heading small{font-size:8px;letter-spacing:.06em}
+ .section-glyph{font-size:14px;margin-right:2px}
+ .count-pill{padding:2px 8px;font-size:9px}
+ .queue-section{
+  order:1;flex:none;
+  display:flex;flex-direction:column;gap:3px;
+ }
+ .home-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;padding:0}
+ .home,.home-empty{
+  height:91px;min-height:91px;border-radius:12px;
+  padding:2px 1px 4px;border-width:1.5px;
+  box-shadow:inset 0 2px 0 #fff7,0 3px 0 #221d45,0 4px 8px #090a2444;
+ }
+ .home:before{width:52px;height:52px;top:6px}
+ .home:after{inset:2px;border-radius:8px}
+ .home-id{top:3px;left:3px;font-size:8px}
+ .home-portrait{width:min(56px,94%);height:53px}
+ .home-ammo{top:35px;right:2px;font-size:13px;min-width:24px;min-height:22px}
+ .home-name{font-size:10px;line-height:11px}
+ .home-hits{margin-top:3px;font-size:8px;padding:2px 3px;border-radius:6px}
+ .upcoming-grid{gap:5px;margin-top:1px;padding:0}
+ .upcoming-cell{height:22px;min-height:22px;border-radius:6px;box-shadow:inset 0 1px 3px #151634}
+ .peek-face{height:21px;width:21px}
+ .mini-status{display:none}
+ .waiting-section{order:2;flex:none;display:flex;flex-direction:column;gap:2px}
+ .rest-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;min-height:52px;padding:0}
+ .rest-empty,.rest-unit{
+  height:52px;min-height:52px;border-radius:11px;
+  border-width:1.5px;box-shadow:inset 0 2px 7px #1217357d,0 2px 0 #1b2141;
+ }
+ .rest-empty:before{width:16px;height:16px}
+ .tiny-face{height:33px;width:33px}
+ .rest-unit small{min-width:0;bottom:2px;padding:1px 3px;font-size:8px}
+ .status-strip{
+  order:4;flex:0 0 21px;min-height:21px;max-height:21px;
+  border-radius:9px;padding:2px 8px;margin:0;
+  font-size:9px;overflow:hidden;white-space:nowrap;
+  text-overflow:ellipsis;box-shadow:inset 0 1px 0 #fff2;
+ }
+ .status-strip span:last-child{overflow:hidden;text-overflow:ellipsis}
+ .powerbar{
+  order:3;flex:0 0 49px;min-height:49px;
+  grid-template-columns:minmax(0,1fr) repeat(3,52px);gap:5px;
+  margin:0;padding:0 2px;
+ }
+ .power-meter{min-width:0;padding:4px 7px;border-radius:11px;box-shadow:inset 0 1px 0 #fff3}
+ .power-metric{font-size:9px}.power-metric b{font-size:9px}
+ .stress-meter{height:6px;margin:5px 0 2px}
+ .tiny-label{font-size:6px;line-height:1}
+ .power-button{
+  height:46px;width:46px;border-radius:12px;border-width:1.5px;
+  justify-self:center;box-shadow:inset 0 1px 0 #fff9,0 2px 0 #302546;
+ }
+ .power-button b{font-size:8px;right:-5px;top:-5px}
+ .power-icon{font-size:18px}.power-name{font-size:9px}
+ .spectrum-footer,.screen-footer{display:none}
+ .overlay{padding:12px calc(12px + env(safe-area-inset-left,0px))}
+ .modal{max-height:88dvh;width:min(100%,430px);padding:34px 15px 17px}
+ .modal h2{font-size:21px}
+ .modal .rule-list{font-size:12px;line-height:1.6}
+ #toast{top:calc(55px + env(safe-area-inset-top,0px));max-width:85vw;z-index:40;font-size:10px}
+}
+@media(max-width:760px) and (max-height:720px){
+ :root{--canvas-side:min(calc(100vw - 28px),calc(100vh - 336px));--canvas-side:min(calc(100vw - 28px),calc(100dvh - 336px))}
+ .shell{gap:1px;padding-top:2px;padding-bottom:2px}
+ .game-hud{height:40px;min-height:40px;flex-basis:40px}
+ .hud-circle{height:35px;width:35px;font-size:20px}
+ .level-tab{min-height:28px}
+ .board-footer{min-height:25px}
+ .home,.home-empty{height:82px;min-height:82px}
+ .home-portrait{height:48px}
+ .home-ammo{top:30px}.home-name{font-size:9px}
+ .upcoming-cell{height:17px;min-height:17px}
+ .peek-face{height:17px;width:17px}
+ .rest-empty,.rest-unit{height:47px;min-height:47px}
+ .tiny-face{height:29px;width:29px}
+ .powerbar{flex-basis:44px;min-height:44px}
+ .power-button{height:41px;width:41px}
+ .status-strip{display:none}
+}
+@media(max-width:760px) and (max-height:575px){
+ :root{--canvas-side:min(calc(100vw - 28px),calc(100vh - 310px));--canvas-side:min(calc(100vw - 28px),calc(100dvh - 310px))}
+ .game-row-heading{height:18px;min-height:18px}
+ .queue-section{gap:1px}.waiting-section{gap:1px}
+ .home,.home-empty{height:74px;min-height:74px}
+ .home-portrait{height:42px}
+ .home-ammo{top:26px}
+ .upcoming-grid{display:none}
+ .rest-empty,.rest-unit{height:42px;min-height:42px}
+}
+@media(min-width:761px){
+ /* Desktop is strictly a preview; the Android app runs at 100% device width.
+    In browser enlarge the same play surface instead of tiny 340px island. */
+ .shell{width:min(96vw,780px);max-width:none}
+}
+@media(orientation:landscape) and (max-height:540px) and (max-width:940px){
+ .shell{height:100dvh;min-height:100dvh}
+}
+@media(prefers-reduced-motion:reduce){
+ .board-charm,.status-light{animation:none}
+}
+
+@media(max-width:760px), (display-mode:standalone){.play-flow{justify-content:space-between}}

@@ -1,0 +1,96 @@
+/* Paw Prism 2.3.2 - visibly joined paws and a readable inactive queue. */
+/* Rows 3+ must stay visible! Previously, 0.28 parent * 0.28 portrait
+   made the actual animal roughly 8% opaque. Apply fading ONCE only. */
+.paddock-stage .pen-animals .pen-animal.pen-locked{
+ opacity:.69!important;
+ filter:brightness(1.18) saturate(.78)!important;
+ pointer-events:none!important;cursor:default!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-locked .pen-portrait,
+.paddock-stage .pen-animals .pen-animal.pen-locked .home-portrait,
+.paddock-stage .pen-animals .pen-animal.pen-locked .mystery-creature{
+ opacity:1!important;
+ filter:none!important;
+ pointer-events:none!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-locked .pet-img{
+ opacity:1!important;filter:none!important;pointer-events:none!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-locked .pen-ammo-tag{
+ opacity:.91!important;filter:none!important;
+ background:linear-gradient(145deg,#f9f0db,#e9d3a1)!important;
+ color:#65523d!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-locked .paw-handshake{
+ opacity:1!important;filter:none!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-locked,
+.paddock-stage .pen-animals .pen-animal.pen-locked *{
+ -webkit-tap-highlight-color:transparent!important;
+}
+/* Old text badge and decorative heart were not recognizable as holding hands. */
+.paddock-stage .pen-animals .hand-link,
+.paddock-stage .pen-animals .bond-counter{
+ display:none!important;
+}
+/* Physically connected arms from EACH animal, with the two paws touching.
+   Two SVG bridges form a continuous three-animal vertical chain. */
+.paddock-stage .pen-animals .pen-animal .paw-handshake{
+ position:absolute!important;
+ width:112%!important;
+ left:50%!important;
+ top:36%!important;
+ height:130%!important;
+ transform:translateX(-50%)!important;
+ z-index:28!important;
+ opacity:1!important;
+ display:block!important;
+ overflow:visible!important;
+ pointer-events:none!important;
+ filter:drop-shadow(0 1px 2px #143f32d5) drop-shadow(0 0 3px #fff6b0b8)!important;
+}
+.paddock-stage .pen-animals .pen-animal.linked-next{
+ z-index:14!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond{
+ isolation:isolate!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond::before{
+ content:""!important;display:block!important;
+ pointer-events:none!important;
+ position:absolute!important;
+ left:1px!important;right:1px!important;top:0!important;bottom:0!important;
+ border-left:2px solid #eaf8b4b0!important;
+ border-right:2px solid #eaf8b4b0!important;
+ box-shadow:inset 2px 0 5px #c9fa8530,inset -2px 0 5px #c9fa8530!important;
+ border-radius:0!important;
+ background:linear-gradient(90deg,#ebf9b614 0%,transparent 25%,transparent 75%,#ebf9b614 100%)!important;
+ z-index:0!important;
+}
+.paddock-stage .pen-animals .pen-animal.bond-begin::before{
+ border-top:2px solid #eaf8b4b0!important;
+ border-radius:12px 12px 0 0!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond:not(.linked-next)::before{
+ border-bottom:2px solid #eaf8b4b0!important;
+ border-radius:0 0 12px 12px!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond.bond-begin:not(.linked-next)::before{
+ border-radius:12px!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond .pen-portrait{
+ z-index:2!important;
+}
+@media(max-width:385px){
+ .paddock-stage .pen-animals .pen-animal .paw-handshake{
+ width:105%!important;top:38%!important;height:128%!important;
+ }
+ .paddock-stage .pen-animals .pen-animal.has-bond::before{
+ left:1px!important;right:1px!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .paddock-stage .pen-animals .pen-animal .paw-handshake{
+ transition:none!important;animation:none!important;
+ }
+}

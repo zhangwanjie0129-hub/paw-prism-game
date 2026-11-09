@@ -1,0 +1,30 @@
+/* The board, pets, gates and physics retain their existing coordinates. */
+.stage-heading{gap:9px;align-items:center}
+.mission-portrait{width:clamp(40px,9vw,66px);height:clamp(40px,9vw,66px);flex:0 0 auto;object-fit:contain;image-rendering:pixelated;background:#103a34;border:1px solid #8bddb35e;border-radius:12px;padding:5px;box-sizing:border-box}
+.chapter-copy{min-width:0;flex:1}
+.stage-hint{display:block!important;max-width:100%;font-size:clamp(8px,1.9vw,12px);line-height:1.4;color:#d2e8c5;margin-top:3px;overflow-wrap:anywhere}
+.stage-heading h1{font-size:clamp(18px,4.3vw,27px);line-height:1.25}
+.stage-side{gap:4px;flex-shrink:0}
+.dispatch-instruction{padding:7px 12px 4px;text-align:center;line-height:1.5;background:#0e5948;color:#fff0c1;font-weight:750;font-size:12px}
+.dispatch-instruction small{display:block;color:#c2e3c8;font-size:10px;font-weight:500}
+.challenge-strip.near-limit{background:#8d4838e8!important;border-color:#ffd18b!important}
+.collection-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center}
+.collection-chapter{grid-column:1/-1;text-align:left;font-size:13px;margin:16px 0 2px;color:#fff0b5}
+.collection-cell{height:auto;min-height:145px;padding:8px 4px;background:#164b40;border:1px solid #66af91;display:flex;align-items:center;flex-direction:column;gap:5px}
+.collection-cell.current{background:#23775a;border:2px solid #ffe298}
+.collection-cell strong{font-size:11px;line-height:1.4;white-space:normal;word-break:break-word}
+.collection-cell small{font-size:10px;color:#e6e7bf}
+.collection-portrait{width:82px;height:82px;max-width:100%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 3px 1px #092d2b88)}
+.collection-cell:disabled{opacity:.7}
+.collection-cell:disabled img{filter:grayscale(.8);opacity:.65}
+.victory-portrait{display:block;margin:14px auto 0;width:150px;height:150px;padding:12px;object-fit:contain;image-rendering:pixelated;background:#153d3b;border:2px solid #e5cf91;border-radius:18px;box-shadow:0 6px 22px #09262566}
+.modal:has(.collection-grid){width:min(600px,100%);background:linear-gradient(150deg,#236452,#113f37);border-color:#86c9a5}
+.failure-lesson{text-align:left;padding:12px;background:#173f3b;border-radius:12px}
+@media(max-width:380px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.stage-heading{gap:5px}.stage-heading .stage-tool{width:30px;height:30px;font-size:18px}.dispatch-instruction{font-size:10px}.dispatch-instruction small{font-size:9px}.stage-heading h1{font-size:17px}.chapter-kicker{font-size:8px}}
+/* The portrait and lesson require more space than the old 41px title row. */
+.stage-heading{flex:0 0 67px!important;min-height:67px!important;padding:5px 10px!important}
+.chapter-copy h1{margin:2px 0!important}
+.stage-heading .stage-hint{margin:3px 0 0!important}
+.dispatch-instruction{flex:0 0 auto!important}
+@media(max-width:360px){.stage-heading{flex-basis:60px!important;min-height:60px!important}.chapter-copy h1{font-size:15px!important}.chapter-kicker{font-size:8px!important}.mission-portrait{width:34px;height:34px;padding:3px}.stage-heading .stage-hint{font-size:8px!important}.dispatch-instruction{padding:3px 8px;font-size:10px}.dispatch-instruction small{font-size:8px}}
+@media(max-height:650px) and (max-width:500px){.canvas-shell{width:min(100%,calc(100dvh - 260px))!important;margin:0 auto!important}.queue-section{min-height:128px!important}.challenge-strip{max-width:calc(100% - 48px)!important}}

@@ -1,0 +1,56 @@
+/* Paw Prism v2.8: ONE REAL BLENDER RENDER per linked group.
+   The underlay is the original toy character models physically posing with
+   aligned paws. No separate SVG noodle connectors and no duplicate bodies. */
+.paddock-stage .pen-animals .pen-animal.has-bond::before{
+ display:none!important;content:none!important;
+ border:0!important;background:none!important;box-shadow:none!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond{
+ isolation:auto!important;z-index:12!important;
+ filter:none!important;overflow:visible!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond .pen-portrait,
+.paddock-stage .pen-animals .pen-animal.has-bond .mystery-creature{
+ visibility:hidden!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond .pen-ammo-tag{
+ z-index:40!important;
+ filter:none!important;
+}
+.paddock-stage .pen-animals .pen-animal .bond-portrait.bond-prefab{
+ position:absolute!important;
+ display:block!important;
+ pointer-events:none!important;
+ user-select:none!important;
+ left:50%!important;
+ top:calc(var(--petSize)*-.09)!important;
+ transform:translateX(-50%)!important;
+ width:calc(var(--petSize)*1.36)!important;
+ max-width:none!important;
+ height:auto!important;
+ object-fit:contain!important;
+ opacity:1!important;
+ filter:drop-shadow(0 1px 1px #164b38a0)!important;
+ z-index:22!important;
+ -webkit-user-drag:none!important;
+}
+.paddock-stage .pen-animals .pen-animal .bond-portrait.prefab-3{
+ top:calc(var(--petSize)*-.18)!important;
+ width:calc(var(--petSize)*1.37)!important;
+}
+.paddock-stage .pen-animals .pen-animal .bond-portrait.all-rear{
+ opacity:.69!important;
+}
+.paddock-stage .pen-animals .pen-animal .bond-portrait.rear-at-two{
+ mask-image:linear-gradient(to bottom,#000 0%,#000 60%,rgba(0,0,0,.7) 80%,rgba(0,0,0,.7) 100%);
+ -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 60%,rgba(0,0,0,.7) 80%,rgba(0,0,0,.7) 100%);
+}
+.paddock-stage .pen-animals .pen-animal .bond-portrait.rear-at-one{
+ mask-image:linear-gradient(to bottom,#000 0%,#000 43%,rgba(0,0,0,.7) 66%,rgba(0,0,0,.7) 100%);
+ -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 43%,rgba(0,0,0,.7) 66%,rgba(0,0,0,.7) 100%);
+}
+@media(max-width:385px){
+ .paddock-stage .pen-animals .pen-animal .bond-portrait.bond-prefab{
+ width:calc(var(--petSize)*1.36)!important;
+ }
+}

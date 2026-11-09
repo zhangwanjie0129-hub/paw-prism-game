@@ -1,0 +1,35 @@
+/* CD Studio v3.0.9 — no resting camp, no mystery/bonds; opaque puzzle walls. */
+.queue-section{position:relative!important}
+.queue-section .paddock-stage #gateStrip{
+ top:2px!important;height:42px!important;
+}
+.queue-section .paddock-stage #homeGrid{
+ top:47px!important;bottom:8px!important;
+}
+.queue-section .paddock-stage .pen-gate{height:42px!important}
+.queue-section .paddock-stage .gate-strip .gate-panel{
+ top:6px!important;bottom:4px!important;
+}
+.queue-section .paddock-stage .pen-animals .pen-animal{
+ isolation:isolate;
+}
+.queue-section .paddock-stage .pen-animals .pen-ammo-tag{
+ position:absolute!important;top:-7px!important;left:50%!important;
+ transform:translateX(-50%)!important;
+ z-index:20!important;right:auto!important;bottom:auto!important;
+}
+.queue-section .paddock-stage .pen-animal .pet-img{
+ object-fit:contain;
+}
+.challenge-strip #missCount{
+ color:#ffe1b8!important;
+ font-size:11px!important;white-space:nowrap!important;
+}
+.game-hud .wallet{flex-shrink:0}
+.powerbar{display:flex;justify-content:center!important;padding:10px 6px!important}
+.powerbar #restart{min-width:150px;justify-content:center}
+.status-strip{text-align:center}
+@media(max-width:390px){
+ .queue-section .paddock-stage #gateStrip{top:2px!important;height:38px!important}
+ .queue-section .paddock-stage #homeGrid{top:43px!important}
+}

@@ -1,0 +1,17 @@
+/* V1.8 — No printed animal nameplates; full-height mixed species queues */
+.paddock-stage #homeGrid .home-name,
+.paddock-stage #homeGrid .home-empty .home-name{
+ display:none!important;visibility:hidden!important;height:0!important;
+}
+.paddock-stage .pen-animals{bottom:4px!important}
+#audioToggle{position:relative}
+#audioToggle.music-live:after{
+ content:"";position:absolute;right:3px;top:3px;
+ width:5px;height:5px;background:#e6fca6;border-radius:50%;
+ box-shadow:0 0 6px #e9ffa5;
+}
+#audioToggle.music-off{color:#adceb3!important;opacity:.9}
+#sfxToggle{margin:2px 4px 5px 0;min-height:35px;font-size:13px}
+#sfxToggle.off{opacity:.62}
+.paddock-stage .pen-animal .pet-img{pointer-events:none}
+@media(max-height:650px){.paddock-stage .pen-animals{bottom:0!important}}

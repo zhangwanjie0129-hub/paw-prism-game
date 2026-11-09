@@ -1,0 +1,122 @@
+/* Paw Prism 2.3: two-state art, double-row choice and vertical friendships. */
+#readyHint,.ready-hint,.pen-gate.ready::after{display:none!important}
+#modeToggle{display:none!important}
+.paddock-stage #gateStrip .pen-gate,
+.paddock-stage #gateStrip .pen-gate.ready,
+.paddock-stage #gateStrip .pen-gate.waiting{
+ filter:none!important;opacity:1!important;
+ cursor:pointer!important;touch-action:manipulation!important;
+}
+.paddock-stage #gateStrip .pen-gate .gate-panel,
+.paddock-stage #gateStrip .pen-gate.ready .gate-panel,
+.paddock-stage #gateStrip .pen-gate.waiting .gate-panel{
+ border-color:#7f4a2f!important;
+ box-shadow:inset 0 2px #ffe09e99,0 2px 3px #143f31a1!important;
+}
+.paddock-stage #gateStrip .pen-gate .gate-paw{
+ color:#fff3be!important;text-shadow:0 2px #705131!important;
+}
+.paddock-stage #homeGrid .home{cursor:default!important}
+.paddock-stage .pen-animals .pen-animal.pen-selectable{
+ cursor:pointer!important;pointer-events:auto!important;
+ opacity:1!important;
+ filter:drop-shadow(0 2px 2px #134b3677)!important;
+ -webkit-tap-highlight-color:transparent;
+}
+.paddock-stage .pen-animals .pen-animal.pen-selectable:active{
+ transform:scale(.94);filter:brightness(1.1)!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-selectable:focus-visible{
+ outline:2px solid #f6e1a3;outline-offset:-5px;border-radius:18px;
+}
+.paddock-stage .pen-animals .pen-animal.pen-locked,
+.paddock-stage .pen-animals .pen-animal.pen-locked .pen-portrait,
+.paddock-stage .pen-animals .pen-animal.pen-locked .mystery-creature{
+ opacity:.28!important;filter:grayscale(1) brightness(.7)!important;
+ pointer-events:none!important;cursor:default!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-locked .pen-ammo-tag{
+ filter:grayscale(1) brightness(.7)!important;opacity:.55!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-selectable .pen-ammo-tag{
+ opacity:1!important;filter:none!important;
+}
+.paddock-stage .pen-animals .pen-animal.has-bond{
+ z-index:6!important;
+}
+.paddock-stage .pen-animals .pen-animal.linked-next{
+ z-index:7!important;
+}
+/* A pair of vine-joined paws connects adjacent creatures VERTICALLY. */
+.paddock-stage .pen-animals .hand-link{
+ position:absolute;bottom:-12px;left:0;right:0;height:22px;
+ z-index:19;pointer-events:none!important;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:0 5px;
+}
+.paddock-stage .pen-animals .hand-link i{
+ height:16px;min-width:11px;width:13px;
+ border:3px solid #e7ea9b;border-top:0;border-radius:0 0 12px 12px;
+ box-shadow:0 0 5px #387e52,inset 0 0 3px #61d584;
+ background:#287f4f9c;
+}
+.paddock-stage .pen-animals .hand-link b{
+ font-size:12px;line-height:16px;color:#fbe39f;
+ text-shadow:0 1px #164633,0 0 6px #b4ec96;
+ border-radius:100%;padding:0 1px;
+}
+.paddock-stage .pen-animals .pen-animal .bond-counter{
+ position:absolute;left:1px;top:1px;z-index:20;
+ font-size:8px;font-weight:1000;line-height:14px;
+ padding:0 3px;border-radius:9px;
+ color:#fff1b5;background:#235e57;
+ border:1px solid #d7eda7;
+ box-shadow:0 1px 3px #123a3799;
+ pointer-events:none!important;white-space:nowrap;
+}
+/* Anonymous sprites reveal neither body color nor ammunition until dispatched. */
+.paddock-stage .pen-animal .mystery-creature{
+ display:grid;place-items:center;width:78%;height:80%;
+ border-radius:48% 48% 43% 43%;
+ background:linear-gradient(160deg,#1f5851,#2d3f53);
+ border:2px dashed #c6e4cc;
+ color:#f3e9c6;position:relative;
+ box-shadow:inset 0 0 14px #143b44aa,0 1px 5px #15563888;
+}
+.paddock-stage .pen-animal .mystery-creature:before,
+.paddock-stage .pen-animal .mystery-creature:after{
+ content:"";position:absolute;top:-7px;left:5px;
+ width:17px;height:15px;background:#1e514c;border:2px dashed #c6e4cc;
+ border-radius:70% 60% 30% 30%;transform:rotate(-20deg);
+ z-index:-1;
+}
+.paddock-stage .pen-animal .mystery-creature:after{
+ left:auto;right:5px;transform:rotate(20deg);
+}
+.paddock-stage .pen-animal .mystery-creature span{
+ font-size:30px;font-weight:1000;text-shadow:0 2px #16574e;
+}
+.paddock-stage #homeGrid .home .pen-mystery .pen-ammo-tag{
+ background:linear-gradient(145deg,#f0eed8,#a3c6b7)!important;
+ border-color:#d7f4df!important;color:#184a42!important;
+}
+@media(max-width:400px){
+ .paddock-stage .pen-animals .pen-animal .bond-counter{font-size:7px;line-height:12px;padding:0 2px;}
+ .paddock-stage .pen-animal .mystery-creature span{font-size:24px}
+}
+@media(prefers-reduced-motion:reduce){
+ .paddock-stage .pen-animals .pen-animal.pen-selectable:active{transform:none!important}
+}
+/* Smaller, cleaner vertical hand-holding ribbon after simulator review. */
+.paddock-stage .pen-animals .hand-link{
+ left:50%!important;right:auto!important;width:38px!important;
+ transform:translateX(-50%);bottom:-8px!important;
+ height:17px!important;z-index:20!important;padding:0 2px!important;
+ justify-content:space-between!important;
+}
+.paddock-stage .pen-animals .hand-link i{
+ min-width:4px!important;width:4px!important;height:12px!important;
+ border:0!important;border-radius:6px!important;
+ background:#f7e2a1!important;box-shadow:0 0 4px #5ec68a!important;
+}
+.paddock-stage .pen-animals .hand-link b{font-size:12px!important}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+ <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#a99cf2"/><stop offset=".58" stop-color="#7162c3"/><stop offset="1" stop-color="#423778"/></linearGradient><linearGradient id="pad" x2="0" y2="1"><stop stop-color="#fff9db"/><stop offset="1" stop-color="#ffd39f"/></linearGradient></defs>
+ <rect x="2" y="2" width="60" height="60" rx="19" fill="url(#bg)" stroke="#f5defe" stroke-width="2"/>
+ <path d="M8 16Q15 5 31 6" stroke="#fff" stroke-opacity=".6" stroke-width="4" fill="none" stroke-linecap="round"/>
+ <g fill="url(#pad)" stroke="#a37baf" stroke-opacity=".48" stroke-width=".7">
+ <ellipse cx="17" cy="26" rx="6" ry="8" transform="rotate(-19 17 26)"/>
+ <ellipse cx="29" cy="19" rx="6.2" ry="8"/>
+ <ellipse cx="43" cy="23" rx="6" ry="8" transform="rotate(18 43 23)"/>
+ <ellipse cx="49" cy="36" rx="5.3" ry="7" transform="rotate(32 49 36)"/>
+ <path d="M32 31C21 31 18 40 16 45C14 51 19 56 25 53Q32 49 38 53C45 57 52 49 47 42C42 35 39 31 32 31Z"/>
+ </g>
+ <path d="M32 38L34.5 43.1L40 44L36 47.7L36.8 53L32 50.5L27.2 53L28 47.7L24 44L29.5 43.1Z" fill="#f8a7ca"/>
+ <circle cx="51" cy="13" r="3" fill="#fff9d0"/>
+</svg>

@@ -1,0 +1,269 @@
+/* v1.3.0 / Forest Parade — CD Studio.
+   Forest scenery, real meadow queues, tactile timber signs.
+   This final stylesheet intentionally follows v1.2 and all mobile rules. */
+:root{
+ --forest-ink:#f6fbf2;--forest-yellow:#ffedbf;--forest-moss:#4a8761;
+ --forest-dark:#132e32;--forest-river:#86d6c9;--forest-wood:#805f41;
+}
+html,body{background:#102b33;color:var(--forest-ink)}
+.shell{
+ background:radial-gradient(ellipse at 42% 2%,#386b63a8,transparent 50%),
+  radial-gradient(ellipse at 96% 42%,#27554985,transparent 38%),
+  linear-gradient(180deg,#1a3d45 0%,#0d2a37 39%,#113734 80%,#122b30 100%);
+}
+.hud-tag{color:#ddf6de;letter-spacing:.12em}
+.hud-tag i{color:#ffe6a9}
+.level-tab{background:linear-gradient(180deg,#89b77c,#528969 67%,#35735a);border:1.4px solid #d3f6b9;box-shadow:inset 0 1px #ffffff8c,0 3px 0 #1b563f,0 7px 12px #102b25a8;color:#fff}
+.level-tab:before{background:#ffffff44}
+.wallet,.hud-circle,.stage-tool{background:linear-gradient(150deg,#2f775f,#1a504d);border-color:#9fd6b7;box-shadow:inset 0 1px #f4fbd544,0 3px 0 #183d35;color:#fff}
+.hud-circle{font-weight:950;color:#f9ffed}
+.wallet-star{color:#fbe6a2}
+.chapter-kicker{color:#a8d9b7}
+.chapter-copy h1{color:#fff8e6}
+.board-frame{border:1px solid #7cb89b;background:linear-gradient(155deg,#22483b,#203d3d 60%,#234f49);box-shadow:inset 0 1px #f4ffdc3c,0 5px 14px #061b2175}
+.canvas-shell{border:1.4px solid #b2d0a8;box-shadow:inset 0 0 0 2px #183e31,0 6px 12px #051a1f90}
+.board-scene-tag{background:#204c3bdc;border:1px solid #a3d9a17a;color:#e7ffe1;box-shadow:0 3px 7px #0b342976}
+.board-stats strong{color:#b5f0be}
+.meter{background:#13352f;border:1px solid #7ba67c}
+.meter-fill{background:linear-gradient(90deg,#4cbeb5,#84d48a,#fff4b8);box-shadow:0 0 10px #b3ef92a3}
+.count-pill{color:#e7f8df;background:#24513f;border:1px solid #8bbd87;box-shadow:0 2px 0 #163f34}
+.section-glyph{color:#a2e2a4}
+.heart-glyph{color:#ffc19e}
+.game-row-heading{color:#fff9e5;text-shadow:0 1px 3px #183e2f}
+.game-row-heading small{color:#c1dac8;opacity:.93}
+
+/* Forest queue: actual animals stand along a moss-covered clearing, not
+   within a strip of unrelated generic rectangular HUD cards. */
+.queue-section{
+ position:relative;isolation:isolate;min-width:0;
+ background:
+ linear-gradient(180deg,#072b2a08 0%,#0b39242c 66%,#102c25a1 100%),
+ url("art/forest-queue.svg") center center / cover no-repeat;
+ border:1px solid #669d7399;
+ border-radius:18px;padding:5px 7px 8px;
+ box-shadow:inset 0 2px 0 #d3efbe23,0 4px 12px #061b1bd9;
+ overflow:hidden;
+}
+.queue-section:before{
+ content:"";pointer-events:none;position:absolute;
+ width:100%;height:38%;left:0;top:0;z-index:-1;
+ background:linear-gradient(180deg,#0a2829b4,transparent);
+}
+.queue-section .game-row-heading{position:relative;z-index:2;color:#fafee7}
+.queue-section .game-row-heading small{color:#d6e2c4}
+.home-grid{position:relative;z-index:1;gap:4px}
+.home,.home-empty{
+ background:transparent!important;border:1px solid transparent!important;
+ box-shadow:none!important;border-radius:14px;
+ filter:none!important;transition:transform .14s,opacity .14s;
+ overflow:visible;
+}
+.home:before{
+ content:"";position:absolute;left:13%;bottom:18px;top:auto;
+ width:74%;height:17px;border-radius:50%;
+ background:radial-gradient(ellipse at center,#a3ca78 0%,#45704c 65%,transparent 100%);
+ opacity:.93;filter:none;transform:none;
+ box-shadow:0 6px 5px #072b2690;
+}
+.home:after{
+ content:"";position:absolute;left:2%;right:2%;bottom:0;
+ height:29px;border-radius:7px;z-index:1;
+ background:
+ linear-gradient(90deg,transparent 7%,#ba955e51 9%,transparent 15%,transparent 80%,#e9c17b40 85%,transparent 90%),
+ linear-gradient(175deg,#876949e9,#694e39ed 60%,#463e34f3);
+ border:1px solid #b79a70bf;
+ box-shadow:inset 0 2px 1px #ddc39b83,0 2px 4px #061d1dbf;
+}
+.home.helpful{
+ background:#f5ffdf13!important;
+ border:1px solid color-mix(in srgb,var(--tone),white 12%)!important;
+ box-shadow:0 0 11px color-mix(in srgb,var(--tone),transparent 47%),inset 0 0 12px #fff2!important;
+}
+.home:not(.helpful){opacity:.78}
+.home:not(.helpful):disabled{opacity:.66}
+.home:not(:disabled):hover{transform:translateY(-3px) scale(1.025);filter:none!important}
+.home:active:not(:disabled){transform:translateY(1px) scale(.96)}
+.home-portrait{position:relative;z-index:3;filter:drop-shadow(0 3px 2px #133c2b9c)}
+.home-name{z-index:4;color:#fffbdc;text-shadow:0 2px 2px #43311edb;font-weight:950}
+.home-ammo{
+ z-index:5;background:linear-gradient(140deg,#fff9e5,#ffe5a6)!important;
+ border:1px solid #fff7d4!important;color:#493821!important;
+ box-shadow:inset 0 1px #fff,0 2px 0 #805a36,0 4px 7px #1836288a!important;
+}
+.home-id{background:#28513ed9;color:#fcf3d7;z-index:5;box-shadow:0 1px 0 #163b35}
+.home-hits{
+ position:relative;z-index:4;background:#325c46ed;border:1px solid #a6bd8ec0;
+ color:#fff7d5;border-radius:6px;
+ box-shadow:0 1px 0 #14392e;max-width:96%;
+}
+.home:not(.helpful) .home-hits{color:#dfebd4;border-color:#7a9c73}
+.home.wildcard,.rest-unit.wildcard{
+ background:#f0eaff1a!important;
+ border:1px solid #ddc2fa!important;
+ box-shadow:0 0 10px #f8ccf988!important;
+}
+.home.wildcard .home-hits{
+ color:#fff!important;background:linear-gradient(120deg,#51775b,#7871a9)!important;
+ border-color:#e2d1ff!important;
+}
+.home.wildcard .home-ammo{background:linear-gradient(140deg,#fff9df,#ffe4bf)!important}
+.home-empty{display:grid;place-items:center;color:#ecf0d9a3}
+.upcoming-grid{
+ position:relative;z-index:2;margin-top:2px;gap:6px;padding:0 3px;
+ background:linear-gradient(90deg,#356c4952,#6e8b5558,#37694c51);
+ border-radius:20px;box-shadow:inset 0 1px #e8f7ce29;
+}
+.upcoming-cell{
+ position:relative;display:flex;align-items:center;justify-content:space-evenly;
+ height:20px;min-height:20px;border:none;border-radius:16px;
+ background:transparent;box-shadow:none;padding:0;
+}
+.upcoming-cell:before{
+ content:"";position:absolute;z-index:0;
+ width:80%;height:7px;bottom:0;left:10%;border-radius:50%;
+ background:#163e2d9c;box-shadow:0 1px 0 #c1d49455;
+}
+.peek-face{position:relative;z-index:1;height:23px;width:23px;filter:drop-shadow(0 1px 1px #163828)}
+.peek-face:before,.peek-face.wildcard:before{display:none}
+.peek-none{color:#e1efd6c9}
+
+/* Camp site / return bay, with wooden stumps and pet portraits. */
+.waiting-section{
+ position:relative;isolation:isolate;overflow:hidden;
+ border:1px solid #6da27b80;border-radius:15px;
+ padding:5px 7px 7px;
+ background:
+ linear-gradient(180deg,#0e352c36,#112c2b5e),
+ url("art/forest-rest.svg") center center / cover no-repeat;
+ box-shadow:0 4px 10px #071b208c,inset 0 1px #dcefd239;
+}
+.waiting-section .game-row-heading{z-index:1}
+.rest-grid{gap:5px;position:relative;z-index:1}
+.rest-unit,.rest-empty{
+ height:58px;
+ background:transparent!important;
+ border:1px solid #c8da9966;
+ border-radius:10px;
+ box-shadow:none!important;
+}
+.rest-unit:before,.rest-empty:after{
+ content:"";position:absolute;left:7%;bottom:1px;width:86%;height:17px;
+ border:1px solid #bca070;background:linear-gradient(180deg,#a18c61,#655336);
+ border-radius:50% 50% 32% 32%;
+ box-shadow:inset 0 2px #f2cf89aa,0 2px 0 #2b412f;
+}
+.rest-empty{
+ border-style:dotted;border-color:#abc99858;
+ background:#38563a3b!important;filter:saturate(.6);
+}
+.rest-empty:before{border:1px solid #d0d9af69;background:#60745333}
+.rest-unit.rest-ready{
+ border:1px solid #b0f5a5!important;
+ background:#d3fff01b!important;
+ box-shadow:0 0 13px #b2f8a594!important;
+}
+.tiny-face{position:relative;z-index:2;filter:drop-shadow(0 1px 2px #1f4027a8)}
+.rest-unit small{
+ z-index:3;position:absolute;bottom:0;
+ color:#fff5db;background:#284736ed;
+ text-shadow:0 1px 1px #193223;
+ border:1px solid #b2c39b9e;border-radius:7px;
+ box-shadow:0 1px 0 #1c3624;
+}
+.rest-unit small b{color:#fff3be}
+.pet-color-chip{border-color:#fff7dc}
+.status-strip{
+ border:1px solid #789a7988;background:#244d3e;color:#e1f7d8;
+}
+.status-light{background:#d0f4ae;box-shadow:0 0 11px #ecf59e}
+.power-meter{
+ background:#1c453d;border-color:#679775;
+}
+.stress-meter{background:#10332d;border-color:#588d70}
+.tiny-label{color:#b7c7a2}
+.calm-power{background:linear-gradient(145deg,#7abbb1,#368b7e);border-color:#b9e7c7}
+.combo-power{background:linear-gradient(145deg,#af9cd3,#7c749f)}
+.restart-power{background:linear-gradient(145deg,#e9bd78,#bd844d);border-color:#fff0be}
+.modal{
+ background:linear-gradient(140deg,#294f49,#1d413e);
+ border-color:#a3cea0;
+}
+.modal-close{background:#396a56}
+.modal-primary{background:linear-gradient(145deg,#bceba0,#76cfaa);border-color:#e7fad1}
+.animal-guide-item{background:#215443}
+
+@media(max-width:760px),(display-mode:standalone){
+ :root{--canvas-side:min(calc(100vw - 28px),calc(100dvh - 480px))}
+ .shell{
+  background:radial-gradient(ellipse at 45% 0%,#49795c55,transparent 45%),
+    linear-gradient(180deg,#164340,#0b2833 47%,#123b33);
+ }
+ .play-flow{gap:4px;justify-content:flex-start}
+ .game-hud{flex-basis:48px;height:48px;min-height:48px}
+ .board-frame{padding:5px 5px 4px;border-radius:16px}
+ .queue-section{
+  display:flex;flex-direction:column;gap:1px;order:2;
+  flex:none;padding:4px 6px 6px;border-radius:14px;
+ }
+ .home-grid{gap:1px;padding:0}
+ .home,.home-empty{height:85px;min-height:85px;padding:2px 0 0;border-radius:11px}
+ .home-portrait{width:min(64px,98%);height:57px;min-height:57px;z-index:3}
+ .home:before{height:13px;bottom:19px}
+ .home:after{height:27px}
+ .home-name{position:absolute;top:56px;font-size:10px;color:#fff5d6}
+ .home-ammo{top:2px;right:1px;min-height:19px;min-width:21px;height:19px;font-size:10px;padding:0 3px}
+ .home-id{top:3px;left:1px;padding:1px 3px;font-size:8px}
+ .home-hits{
+  position:absolute;bottom:2px;left:50%;transform:translateX(-50%);
+  line-height:10px;font-size:7.4px;padding:1px 2px;margin:0;white-space:nowrap;
+ }
+ .upcoming-grid{height:19px;min-height:19px;margin-top:0;gap:1px}
+ .upcoming-cell{height:19px;min-height:19px}
+ .peek-face{height:19px;width:19px}
+ .waiting-section{order:3;flex:none;padding:3px 6px 5px;gap:1px}
+ .waiting-section .game-row-heading{height:19px;min-height:19px}
+ .rest-grid{min-height:43px;gap:4px}
+ .rest-empty,.rest-unit{height:43px;min-height:43px;border-radius:8px}
+ .rest-unit:before,.rest-empty:after{height:12px}
+ .tiny-face{width:32px;height:32px}
+ .rest-unit small{font-size:7.4px;bottom:0}
+ .powerbar{order:4}
+ .status-strip{order:5}
+}
+@media(max-width:760px) and (max-height:790px){
+ :root{--canvas-side:min(calc(100vw - 30px),calc(100dvh - 475px))}
+ .home,.home-empty{height:78px;min-height:78px}
+ .home-portrait{height:50px;min-height:50px}
+ .home-name{top:49px}
+ .home:after{height:24px}
+ .upcoming-grid,.upcoming-cell{height:17px;min-height:17px}
+ .rest-unit,.rest-empty{height:40px;min-height:40px}
+ .rest-grid{min-height:40px}
+}
+@media(max-width:760px) and (max-height:650px){
+ :root{--canvas-side:min(calc(100vw - 32px),calc(100dvh - 385px))}
+ .game-hud{flex-basis:42px;height:42px;min-height:42px}
+ .queue-section{padding:2px 5px 3px}
+ .home,.home-empty{height:70px;min-height:70px}
+ .home-portrait{height:43px;min-height:43px}
+ .home-name{top:40px}
+ .home:after{height:25px}
+ .upcoming-grid{display:none}
+ .waiting-section{padding:2px 5px 3px}
+ .rest-grid{min-height:35px}
+ .rest-empty,.rest-unit{height:35px;min-height:35px}
+ .tiny-face{height:25px;width:25px}
+ .rest-unit small{font-size:6.7px}
+}
+@media(min-width:761px){
+ .queue-section,.waiting-section{padding:12px 12px 13px;border-radius:19px}
+ .home,.home-empty{height:147px}
+ .home-portrait{width:105px;height:104px}
+ .home-name{font-size:13px;z-index:4}
+ .home:after{height:44px}
+ .home-hits{font-size:10px}
+ .rest-unit,.rest-empty{height:89px}
+ .tiny-face{width:57px;height:57px}
+ .upcoming-grid,.upcoming-cell{height:32px}
+ .peek-face{height:28px;width:28px}
+}

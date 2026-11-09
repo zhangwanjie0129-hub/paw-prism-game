@@ -1,0 +1,39 @@
+/* v1.7: Character Creator style bible -> Blender prerendered original mascots.
+   Each transparent sprite uses the same orthographic studio rig and matching
+   512px canvas. Every row/column preserves EXACTLY the same displayed size. */
+:root{--petSize:clamp(48px,15vw,66px)}
+.paddock-stage .home .pen-portrait .pet-img,
+.paddock-stage .home .home-portrait .pet-img,
+.pen-animals .pen-portrait .pet-img{
+ width:100%!important;height:100%!important;object-fit:contain!important;
+ image-rendering:auto!important;filter:drop-shadow(0 2px 2px #183b3390);
+}
+.paddock-stage .pen-animals .pen-animal{
+ width:var(--petSize)!important;height:var(--petSize)!important;
+ min-width:var(--petSize)!important;min-height:var(--petSize)!important;
+ max-width:var(--petSize)!important;max-height:var(--petSize)!important;
+ flex:0 0 var(--petSize)!important;
+}
+.paddock-stage .pen-animals .pen-animal.pen-leader .pet-img{
+ animation:collectible-idle 2.6s ease-in-out infinite alternate;
+}
+@keyframes collectible-idle{
+ 0%,35%{transform:translateY(0) scale(1)}
+ 100%{transform:translateY(-2px) scale(1.016)}
+}
+.gate-runner{
+ width:44px!important;height:44px!important;object-fit:contain!important;
+ filter:drop-shadow(0 3px 2px #224634cc) drop-shadow(0 0 4px #fff7dc77)!important;
+}
+@media(max-width:390px){
+ :root{--petSize:clamp(44px,14.4vw,60px)}
+}
+@media(max-height:715px){
+ :root{--petSize:clamp(41px,13vw,57px)}
+}
+@media(min-width:500px){
+ :root{--petSize:70px}
+}
+@media(prefers-reduced-motion:reduce){
+ .paddock-stage .pen-animals .pen-animal.pen-leader .pet-img{animation:none!important}
+}

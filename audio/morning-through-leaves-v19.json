@@ -1,0 +1,22 @@
+{
+  "title": "树叶间的晨光",
+  "english": "Morning Light Through Leaves",
+  "original": true,
+  "producer": "CD Studio",
+  "key": "G major",
+  "bpm": 76,
+  "bars": 24,
+  "seconds": 75.78945833333333,
+  "sampleRate": 24000,
+  "channels": 1,
+  "peak": 0.55,
+  "originalSamples": true,
+  "instruments": [
+    "felt piano",
+    "soft nylon guitar",
+    "warm strings",
+    "subtle flute",
+    "woodland wind"
+  ],
+  "notes": "New melodic composition. No original v18 melody nor borrowed commercial recordings."
+}
